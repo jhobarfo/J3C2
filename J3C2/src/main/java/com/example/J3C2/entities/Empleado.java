@@ -1,5 +1,6 @@
 package com.example.J3C2.entities;
 import com.example.J3C2.enums.EmpleadoEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,6 +24,9 @@ public class Empleado {
     private EmpleadoEnum rolEmpleado;
 
     @ManyToOne
-    @JoinColumn(name = "empresa_id")
     private Empresa empresa;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "empleado")
+    private Perfil perfil;
 }
